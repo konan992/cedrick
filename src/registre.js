@@ -39,7 +39,33 @@ export function trouverParId(observations, id) {
 // · texture présente dans TEXTURES · pH nombre entre 0 et 14 (bornes comprises)
 // · etatHumidite présent dans HUMIDITES. N'ajoutez aucune autre règle que celles-ci.
 export function verifierObservation(saisie, observations) {
-  throw new Error('TODO : coder verifierObservation dans src/registre.js');
+  //throw new Error('TODO : coder verifierObservation dans src/registre.js');
+const erreurs = [];
+
+  if (!saisie.id || saisie.id.trim() === '') {
+    erreurs.push("L'identifiant est obligatoire.");
+  } else if (trouverParId(observations, saisie.id)) {
+    erreurs.push(`L'identifiant '${saisie.id}' est déjà utilisé.`);
+  }
+
+  if (!saisie.parcelle || saisie.parcelle.trim() === '') {
+    erreurs.push('La parcelle est obligatoire.');
+  }
+
+  if (!TEXTURES.includes(saisie.texture)) {
+    erreurs.push(`La texture doit être l'une des suivantes : ${TEXTURES.join(', ')}.`);
+  }
+
+  const phNombre = versNombre(saisie.pH);
+  if (Number.isNaN(phNombre) || phNombre < 0 || phNombre > 14) {
+    erreurs.push('Le pH doit être un nombre de 0 à 14, bornes comprises.');
+  }
+
+  if (!HUMIDITES.includes(saisie.etatHumidite)) {
+    erreurs.push(`L'état d'humidité doit être l'un des suivants : ${HUMIDITES.join(', ')}.`);
+  }
+
+  return erreurs;
 }
 
 // Fabrique l'observation à enregistrer à partir d'une saisie VALIDE : pH devient un nombre.
