@@ -9,7 +9,8 @@ export function filtrerParParcelle(observations, parcelle) {
 
 // Renvoie un NOUVEAU tableau avec les observations de cette texture (éventuellement vide).
 export function filtrerParTexture(observations, texture) {
-  throw new Error('TODO : coder filtrerParTexture dans src/recherche.js');
+  //throw new Error('TODO : coder filtrerParTexture dans src/recherche.js');
+  return observations.filter((obs) => obs.texture === texture);
 }
 
 // Renvoie une COPIE triée par pH croissant, avec un comparateur numérique.
