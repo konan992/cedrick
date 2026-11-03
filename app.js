@@ -14,6 +14,6 @@ async function main() {
   ouvrirSaisie();
   console.log("À compléter : écrivez le menu dans app.js (fiches/3-ajouter-lister.md).");
   fermerSaisie();
-}
+} 
 
 main();

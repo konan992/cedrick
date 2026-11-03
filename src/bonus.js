@@ -9,10 +9,16 @@ import { compterParTexture } from './synthese.js';
 // Les champs qu'on a le droit de modifier. L'identifiant n'en fait pas partie.
 export const CHAMPS_MODIFIABLES = ['parcelle', 'texture', 'pH', 'etatHumidite'];
 
+
 // Supprime du carnet l'observation qui a cet identifiant.
 // Renvoie l'observation supprimée, ou undefined si elle n'existe pas (le carnet ne change pas).
 export function supprimerObservation(observations, id) {
-  throw new Error('TODO Bonus : coder supprimerObservation dans src/bonus.js');
+  //throw new Error('TODO Bonus : coder supprimerObservation dans src/bonus.js');
+  const index = observations.findIndex((obs) => obs.id === id);
+  if (index === -1) {
+    return undefined;
+  }
+  return observations.splice(index, 1)[0];
 }
 
 // Modifie UN champ d'une observation. La nouvelle valeur arrive sous forme de TEXTE et suit
